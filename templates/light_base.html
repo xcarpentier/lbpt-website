@@ -1,0 +1,33 @@
+{% load site_name %}
+{% load month_cal %}
+<!DOCTYPE html 
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
+lang="{% firstof LANGUAGE_CODE 'en' %}">
+<head>
+<title>{%site_name%} - {% block title %}{% endblock %}</title>
+{% block css %}
+<link rel="stylesheet" type="text/css"  media="screen, projection" href="{{ MEDIA_URL }}combined-{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}.css" />
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="{{ MEDIA_URL }}ie.css">
+<![endif]-->
+{% endblock %}
+</head>
+<body>
+<div id="wrapper"><div id="page"><div id="header"><div id="menu"><a href="#">{% block header %}{% endblock %}</a></div></div>
+<div id="content_light"><div class="post">{% block content %}{% endblock %}</div>
+</div>
+<div style="clear: both;">&nbsp;</div>
+</div>
+<div id="footer">
+{% block footer %}
+<p>Copyright &copy; {% now "Y" %} {%site_name%}. Tous droits r&eacute;serv&eacute;s.</p>
+<p></p>
+{% endblock %}
+</div>
+</div>
+</body>
+</html>

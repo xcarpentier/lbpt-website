@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Quiz : {{object.quiz_title}}{% endblock %}
+{% block content %}
+<div class="post">
+<h2 class="title">{{object.quiz_title}}{% if result %}&nbsp;-&nbsp;R&eacute;sultat&nbsp;:&nbsp;{{note}}&nbsp;/&nbsp;{{nbquestion}}{% endif %}</h2>
+<div class="entry">
+<div id="search">
+{% if not result %}<form action="{% url quizapp.views.result_quiz key=object.key %}" method="POST">{% endif %}
+<ol>
+{% for item in quiz %}
+<li>
+<h4>
+{% if result %}
+<div class="{% if item.point %}result_ok{% else %}result_ko{% endif %}">{{item.question.question_content}}</div>
+{% else %}
+{{item.question.question_content}}
+{% endif %}
+</h4>
+</li>
+{% for answer in item.answers %}
+{% if result %}
+<p>Bonne r&eacute;ponse&nbsp;:&nbsp;{{answer.answer_content}}</p>
+{%else%}
+<input type="radio" name="{{item.question.key}}" value="{{answer.key}}">{{answer.answer_content}}</input><br/>
+{% endif %}
+{% endfor %}
+{% empty %}
+<p>Le Quiz ne contient pas de questions pour le moment.</p>
+{% endfor %}
+</ol>
+{% if quiz and not result %}
+<input type="submit" id="search-submit" value="valider" />
+{% endif %}
+{% if not result %}
+</form>
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}

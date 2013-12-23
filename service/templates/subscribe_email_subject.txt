@@ -1,0 +1,1 @@
+Souscription au service : {{ service.service_name }}

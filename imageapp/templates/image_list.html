@@ -1,0 +1,22 @@
+{% extends "light_base.html" %}
+{% load site_name %}
+{% block title %}Catalogue des images{% endblock %}
+{% block header %}Liste des images de &laquo; {% site_name %} &raquo;{% endblock %}
+{% block content %}
+<table>
+{% for img in object_list %}
+<tr>
+<td valign="top"><a href="/imageapp/get/{{ img.key }}.png">{{img.name}}</a></td>
+<td valign="top"><img src="/imageapp/get/{{ img.key }}.png"/></td>
+</tr>
+{% endfor %}
+</table>
+<div>
+{% if has_previous %}
+<a href="{% url imageapp.views.list_images %}?page={{ previous }}">&lt;-previous</a>
+{% endif %}
+{% if has_next %}
+<a href="{% url imageapp.views.list_images %}?page={{ next }}">next-&gt;</a>
+{% endif %}
+</div>
+{% endblock %}

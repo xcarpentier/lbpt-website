@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ service.service_name }}{% endblock %}
+{% block content %}
+<div class="post">
+<h2 class="title">{{ service.service_name }}</h2>
+<div class="entry">
+{% autoescape off %}{{service.content}}{% endautoescape %}
+<div id="search">
+<form action="{{ request.path }}" method="post">
+<h5>Formulaire du service&nbsp;&laquo;{{ service.service_name }}&raquo;&nbsp;:</h5>
+<br/>
+<fieldset>
+<table>
+{{ form.as_table }}
+{% if service.person_mail%}
+<tr><th><label for="id_person_mail">Email&nbsp;:</label></th>
+<td><textarea rows="10" cols="50" name="person_mail" id="id_person_mail"></textarea><em>(500 carac. max.)</em></td></tr>
+{% endif %}
+<tr><th><input type="submit" id="search-submit" value="valider" /></th></tr>
+</table>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{rubrique.rubrique_name}}{% endblock %}
+{% block content %}
+{% for rub in object_list %}
+<div class="post">
+<h2 class="title">{{rub.itemrubrique_title}}</h2>
+<p class="date">{{ rub.itemrubrique_date|date:"d/m/y" }}</p>
+<div class="entry">
+{% autoescape off %}{{rub.content}}{% endautoescape %}
+</div>
+</div><br/>
+{% empty %}
+<div class="post">
+<h2 class="title">Aucun &eacute;l&eacute;ment &agrave; afficher.</h2>
+<div class="entry">
+<p>La rubrique &laquo;{{rubrique.rubrique_name}}&raquo; est vide.</p>
+</div>
+</div><br/>
+{% endfor %}
+<div>
+{% if has_previous %}
+<a href="{% url menuapp.views.show_rubrique key=rubrique.key %}?page={{ previous }}">&laquo;&nbsp;pr&eacute;c&eacute;dent</a>
+{% endif %}
+{% if has_next %}
+<a href="{% url menuapp.views.show_rubrique key=rubrique.key %}?page={{ next }}">suivant&nbsp;&raquo;</a>
+{% endif %}
+</div>
+{% endblock %}
+

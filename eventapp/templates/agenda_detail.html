@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}&Eacute;v&eacute;nement : {{object.title_event}}{% endblock %}
+{% block content %}
+<div class="post">
+<h2 class="title">{{object.title_event}}</h2>
+<p class="date">{{ object.agenda_startdate|date:"d/m/y" }}</p>
+<div class="entry">
+{% autoescape off %} {{object.content}} {% endautoescape %}
+<p class="links">
+Lieux&nbsp;:&nbsp;<a class="comments" href="#">{{object.agenda_lieux}}</a><br/>
+</p>
+</div>
+</div>
+{% endblock %}

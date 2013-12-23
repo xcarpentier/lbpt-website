@@ -1,0 +1,15 @@
+<div id="menu">
+<ul>
+<li class="home"><a href="/">Accueil</a></li>
+{% for item in list_menu %}
+<li>
+{% ifequal item.type 'service'%}
+<a href="{% url menuapp.views.subscribe_service key=item.key %}">{{item.name}}</a>
+{% endifequal  %}
+{% ifequal item.type "rubrique"%}
+<a href="{% url menuapp.views.show_rubrique key=item.key %}">{{item.name}}</a>
+{% endifequal  %}
+</li>
+{% endfor %}
+</ul>
+</div>

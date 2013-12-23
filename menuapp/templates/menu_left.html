@@ -1,0 +1,25 @@
+{% for group in list_menus %}
+<li>
+<h2>{{group.name}}</h2>
+<ul>
+{% for item in group.values %}
+<li>
+{% ifequal item.type 'service'%}
+<a href="{% url menuapp.views.subscribe_service key=item.key %}">{{item.name}}</a>
+{% endifequal  %}
+{% ifequal item.type 'rubrique'%}
+<a href="{% url menuapp.views.show_rubrique key=item.key %}">{{item.name}}</a>
+{% endifequal  %}
+</li>
+{% endfor %}
+</ul>
+</li>
+{% endfor %}
+<li>
+<h2>Divers</h2>
+<ul>
+<li><a href="{% url linkapp.views.list_link %}">Liens</a></li>
+<li><a href="{% url quizapp.views.list_quiz %}">Quiz</a></li>
+</ul>
+</li>
+

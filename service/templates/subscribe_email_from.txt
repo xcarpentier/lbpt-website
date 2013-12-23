@@ -1,0 +1,1 @@
+{%load site_name%}{%site_name%} <{{metadata.default_from_email}}>

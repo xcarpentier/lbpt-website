@@ -1,0 +1,16 @@
+<div id="calendar_wrap">
+<table summary="Calendrier">
+<caption>{{today|date:"M"|slice:"3"}}. {{today|date:"Y"}}</caption>
+<thead>
+<tr>{% for day in headers %}<th scope="col">{{ day|date:"D"|slice:":2" }}.</th>{% endfor %}
+</tr>
+</thead>
+<tbody>
+{% for week in calendar %}<tr>
+{% for day in week %}{% if not day.in_month %}<td class="pad"> </td>{% else %}<td{% ifequal day.day today%} id="today"{% endifequal  %}>
+{%if day.event%}<a title="{{day.title}}" href='{%url eventapp.views.detail_agenda key=day.key %}'>{{day.day|date:"j"}}</a>{%else%}{{day.day|date:"j"}}{%endif%}</td>
+{% endif %}{% endfor %}</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>

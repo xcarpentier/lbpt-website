@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load site_name %}
+{% block title %}{{ service.service_name }}{% endblock %}
+{% block content %}
+<div class="post"><h2 class="title">{{ service.service_name }}</h2><div class="entry">
+<br/><p>Votre demande est bien prise compte, vous serez contact&eacute; prochainement par un responsable 
+de l'organisation &laquo;{%site_name%}&raquo;.</p>
+<p class="links"><a class="comments" href="/">Accueil</a></p></div></div>
+{% endblock %}

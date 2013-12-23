@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% load site_name %}
+{% load site_domain %}
+{% block title %}{{ title }} - {%site_name%} - {%site_domain%}{% endblock %}
+{% block userlinks %}
+{% block extrahead %}
+{% endblock %}
+<a href="{%site_domain%}">{%site_domain%}</a> |
+<a href="{{ root_path }}password_change/">Modif. mot de passe</a> | 
+<a href="{% url imageapp.views.list_images %}" target="blank" >Catalogue Images</a> |
+<a href="{{ root_path }}logout/">D&eacute;connexion</a>
+{% endblock %}
+{% block branding %}
+<h1 id="site-name">{%site_name%}</h1>
+{% endblock %}
+{% block nav-global %}
+{% endblock %}

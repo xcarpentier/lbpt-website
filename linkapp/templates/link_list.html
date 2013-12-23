@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Liens{% endblock %}
+{% block content %}
+{% for lnk in object_list %}
+<div class="post">
+<h2 class="title">{{lnk.link_title}}</h2>
+<div class="entry">
+{% autoescape off %}{{lnk.content}}{% endautoescape %}
+<p class="links">
+URL&nbsp;:&nbsp;<a class="comments" href="{{lnk.link_url}}">{{lnk.link_url}}</a><br/>
+</p>
+</div>
+</div><br/>
+{% empty %}
+<div class="post">
+<h2 class="title">Aucun lien &agrave; afficher.</h2>
+<div class="entry">
+<p>Aucun lien &agrave; afficher pour le moment.</p>
+</div>
+</div><br/>
+{% endfor %}
+<div>
+{% if has_previous %}
+<a href="{% url linkapp.views.list_link %}?page={{ previous }}">&laquo;&nbsp;pr&eacute;c&eacute;dent</a>
+{% endif %}
+{% if has_next %}
+<a href="{% url linkapp.views.list_link %}?page={{ next }}">suivant&nbsp;&raquo;</a>
+{% endif %}
+</div>
+{% endblock %}
+

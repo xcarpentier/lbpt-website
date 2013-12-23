@@ -1,0 +1,9 @@
+{% extends "light_base.html" %}
+{% block title %}Connexion requise !{% endblock %}
+{% block content %}
+<h1>Connexion requise !</h1>
+<form action="{{ request.get_full_path }}" method="post">
+  <table>{{ form }}</table>
+  <input type="submit" value="Login" />
+</form>
+{% endblock content %}

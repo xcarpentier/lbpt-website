@@ -1,0 +1,17 @@
+{%load site_domain%}{%load site_domain_contrib%}
+Bonjour,
+Un internaute a souscrit au service {{service.service_name}} :
+Nom : {{person.person_last_name}}
+Prenom : {{person.person_first_name}}
+Adresse email : {{person.person_email}}
+
+{% if msg %}
+Message de l'internaute :
+-----------------------
+{{msg}}
+-----------------------
+{%endif%}
+
+Merci,
+{%site_domain%}
+{%site_domain_contrib%}

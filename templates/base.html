@@ -1,0 +1,35 @@
+{% load site_name %} {% load site_subtitle %} {% load month_cal %} {% load menu_top %} {% load menu_left %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+xml:lang="{% firstof LANGUAGE_CODE 'en' %}"lang="{% firstof LANGUAGE_CODE 'en' %}">
+<head>
+<title>{%site_name%}&nbsp;-&nbsp;{% block title %}Accueil{% endblock %}</title>
+{% block css %}
+<link rel="stylesheet" type="text/css"  media="screen, projection" href="{{ MEDIA_URL }}combined-{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}.css"/>
+{% endblock %}
+{% block js %}{% endblock %}
+{% block extra-head %}{% endblock %}
+</head>
+<body>
+<div id="wrapper"><div id="page"><div id="header">
+{% menu_top %}
+</div>
+<div id="logo"><h1><a href="/">{%site_name%}</a></h1><p><em>{%site_subtitle%}</em></p></div>
+<div id="sidebar"><ul><li>
+<h2>Verset du jour</h2>
+<p><script type="text/javascript" src="http://cafebible.free.fr/lsg/lsg-day.js"></script></p>
+</li>
+<li id="calendar">
+<h2>Calendrier</h2>
+{%month_cal%}
+<br/>
+<ul><li class="cal"><p><a href="{% url eventapp.views.list_agenda %}">Agenda de &laquo;{% site_name%}&raquo;</a></p></li></ul>
+</li>
+{% menu_left %}
+</ul></div>
+<div id="content"><div class="post">{% block content %}{% endblock %}</div></div>
+<div style="clear: both;">&nbsp;</div>
+</div>
+<div id="footer">{% block footer %}<p>Copyright &copy; {% now "Y" %} {%site_name%}. Tous droits r&eacute;serv&eacute;s.</p>{% endblock %}
+</div></div></body></html>
